@@ -6,6 +6,12 @@ Adapted from this blog post which featured an MVC app, made it a one a click dep
 
 https://sekurity.dev/insecure-deserialization-using-binaryformatter-resulting-in-rce/
 
+Included is "TriggerWarning.cs", it will log the last 10 requests in memory and display them back as a queue. Useful for debugging or catching a callback like Burp Collaborator I guess. Just create another function and paste in that code.
+
+WARNING: DO NOT DEPLOY THIS TO AZURE. Should never run outside of a controlled environment. This is literally a an insecure azure application. Functions can (and in this case should) be run locally to develop them. Just run them both and craft your payloads. DO NOT DEPLOY THIS TO AZURE.
+
+So you're going to deploy it to Azure. Kinda wanted to see if you give it access to a keyvault, can you figure out how to READ the keyvault from inside?  Deploy an AzureVM, isolate it to just your IP. Then go to the network settings of the deployed function app and isolate it with Network Security Groups to just that IP. Then see what you can do as the application.  
+
 Plan to add other routes for other Deserialization labs, but for now, here are the bklog posts I'm going to be reading 
 
 ## .Net Deserialization Resources
@@ -23,7 +29,7 @@ https://www.blackhat.com/docs/us-17/thursday/us-17-Munoz-Friday-The-13th-JSON-At
 https://labs.nettitude.com/blog/introducing-aladdin/
 https://github.com/nettitude/Aladdin
 
-## Ysoserial.Net
+## Ysoserial.Net Examples
 https://github.com/pwntester/ysoserial.net
 
 ```powershell
