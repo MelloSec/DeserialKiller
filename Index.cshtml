@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <div class="row">
+        <h2>Enter the text to generate code</h2>
+        @using (Html.BeginForm("GenerateCode", "Home", FormMethod.Post))
+        {
+            @Html.TextBox("text")
+            <input type="submit" name="SubmitButton" value="Encode" />
+        }
+
+        @if (ViewBag.base64code != null)
+        {
+            <p>@ViewBag.base64code</p>
+        }
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <h2>Enter the base64 encoded binary data for deserialization</h2>
+        @using (Html.BeginForm("DegenerateCode", "Home", FormMethod.Post))
+        {
+            @Html.TextBox("code")
+            <input type="submit" name="SubmitButton" value="Deserialize" />
+        }
+
+        @if (ViewBag.deserializationResult != null)
+        {
+            <p>@ViewBag.deserializationResult</p>
+        }
+    </div>
+</main>
